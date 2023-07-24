@@ -9,6 +9,7 @@ void solve(vector<int> &nums,int index, vector<vector<int>>&ans){
     for(int i=index; i<nums.size(); i++){
 swap(nums[index],nums[i]);
 solve(nums,index+1,ans);
+        //Backtracking
 swap(nums[index],nums[i]);
     }
 }
