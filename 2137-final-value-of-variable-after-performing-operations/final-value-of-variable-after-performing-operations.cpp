@@ -4,10 +4,10 @@ public:
         int x=0;
         for(int i=0; i<operations.size(); i++){
             if(operations[i]=="--X" ||operations[i]=="X--" ){
-                 x=x-1;
+                 x--;
             }
             else{
-                x=x+1;
+                x++;
             }
         }
         return x;
