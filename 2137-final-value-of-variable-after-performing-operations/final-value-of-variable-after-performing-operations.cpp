@@ -6,7 +6,7 @@ public:
             if(operations[i]=="--X" ||operations[i]=="X--" ){
                  x--;
             }
-            else{
+            else if(operations[i]=="++X" ||operations[i]=="X++"){
                 x++;
             }
         }
