@@ -37,7 +37,7 @@ public:
         count++;}
 
     if(fow != NULL){
-        head -> next = reverseKGroup(fow, k);
+        head ->next= reverseKGroup(fow, k);
     }
 
     return prev;
