@@ -24,7 +24,7 @@ public:
             slow=head;
             break;
         }}
-        while(fast!=NULL && fast->next!=NULL && slow!=fast ){
+        while( fast!=NULL && slow!=fast ){
             slow=slow->next;
             fast=fast->next;
         }
