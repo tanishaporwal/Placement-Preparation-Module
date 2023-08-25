@@ -4,54 +4,61 @@ using namespace std;
 
 
 // } Driver Code Ends
+
 class Solution
 {
-    public:
-    vector<long long> nextelement( long long arr[],int n){
-        vector<long long>prev(n);
-        stack<int>s;
+    private:
+    vector<long long> prevSmallerElement( long long arr[], int n){
+        vector<long long> next(n);
+        stack<int> s;
         s.push(-1);
-        for(int i=n-1; i>=0; i--){
-            long long curr=arr[i];
-            while(s.top()!=-1 && arr[s.top()]>=curr){
+        for(int i = 0; i < n ; i++)
+        {
+            long long curr = arr[i];
+            while(s.top() != -1 && arr[s.top()] >= curr){
                 s.pop();
             }
-           prev[i]=s.top();
-            s.push(i);
-        }
-        return prev;
-    }
-     vector<long long> prevelement( long long arr[],int n){
-         vector<long long>next(n);
-        stack<int>s;
-        s.push(-1);
-        for(int i=0; i<n; i++){
-            long long curr=arr[i];
-            while(s.top()!=-1 && arr[s.top()]>=curr){
-                s.pop();
-            }
-            next[i]=s.top();
+            next[i] = s.top();
             s.push(i);
         }
         return next;
     }
+    
+    vector<long long> nextSmallerElement( long long arr[], int n){
+        vector<long long> prev(n);
+        stack<int> s;
+        s.push(-1);
+        for(int i = n - 1; i >= 0; i--){
+            long long curr = arr[i];
+            while(s.top()!= -1 && arr[s.top()] >= curr){
+                s.pop();
+            }
+           prev[i] = s.top();
+            s.push(i);
+        }
+        return prev;
+    }
+    public:
     //Function to find largest rectangular area possible in a given histogram.
     long long getMaxArea(long long arr[], int n)
     {
-        vector<long long>prev(n);
-        vector<long long>next(n);
-        prev=prevelement(arr,n);
-        next=nextelement(arr,n);
-        long long area=INT_MIN;
-        for(int i=0; i<n; i++){
-            int l=arr[i];
-            if(next[i]==-1){
-                next[i]=n;
+        vector<long long> prev(n);
+        vector<long long> next(n);
+        prev=prevSmallerElement(arr, n);
+        next=nextSmallerElement(arr, n);
+        
+        long long area = INT_MIN;
+        for(int i = 0; i < n ; i++){
+            long long l = arr[i];
+            
+            if(next[i] == -1){
+                next[i] = n;
             }
-            long long b=next[i]-prev[i]-1;
-            long long res=l*b;
-            area=max(area, l*b);
+            long long b = next[i] - prev[i] - 1;
+            long long newArea = l*b;
+            area = max(area, newArea);
         }
+        
         return area;
     }
 };
