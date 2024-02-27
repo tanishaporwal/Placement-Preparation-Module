@@ -5,14 +5,11 @@ public:
         int digitSum=0;
         for(int i=0; i<nums.size(); i++){
             sum=sum+nums[i];
-            if(nums[i]<=9){
-                digitSum=digitSum+nums[i];
-            }
-            else{
+           
                 while(nums[i]!=0){
                     digitSum+=nums[i]%10;
                     nums[i]=nums[i]/10;
-                }
+                
             }
         }
         return abs(sum-digitSum);
